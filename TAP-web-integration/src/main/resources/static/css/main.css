@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+h1 {
+	color: #4e9a06;
+}
+
+h2 {
+	color: #ce5c00;
+}
+
+input[type=radio]:checked{
+  color: #f00;
+  font-style: normal;
+} 

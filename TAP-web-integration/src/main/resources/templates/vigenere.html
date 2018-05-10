@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Vigenere cipher</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Cifrari</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/">Home</a></li>
+					<li><a href="/about">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<form action="#" th:action="@{/resultVigenere}" autocomplete="off"
+			th:object="${cifrario}" method="post">
+			<h2>Hai scelto il cifrario di Vigenere</h2>
+			<fieldset>
+				<p>
+					Inserisci il messaggio: <input type="text" th:field="*{plaintext}" />
+				</p>
+				<p>
+					Inserisci la chiave: <input type="password" th:field="*{key}" />
+				</p>
+				<p>
+					<input type="radio" name="action" value="cifrare" th:field="*{action}" checked> cifrare
+					<input type="radio" name="action" value="decifrare" th:field="*{action}">
+					decifrare
+				</p>
+				<p>
+					<input type="submit" value="Submit" /> <input type="reset"
+						value="Reset" />
+				</p>
+			</fieldset>
+		</form>
+	</div>
+
+</body>
+</html>

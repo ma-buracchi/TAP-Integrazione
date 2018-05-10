@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Risultato</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Cifrari</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/">Home</a></li>
+					<li><a href="/about">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<form action="#" th:action="@{/vigenereRes}" th:object="${cifrario}"
+			method="post">
+			<h1>Il risultato della cifratura è: </h1>
+			<h2 th:text="${cifrario.plaintext}+' ----> '+${cifrario.ciphertext}" />
+		</form>
+	</div>
+</body>
+</html>

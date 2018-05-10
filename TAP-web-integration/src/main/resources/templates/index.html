@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Home page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Cifrari</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/">Home</a></li>
+					<li><a href="/about">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="starter-template">
+			<h1>Benvenuti nell'applicazione di cifratura</h1>
+			<h2>Selezionare un cifrario tra quelli disponibili</h2>
+			<br>
+		</div>
+	</div>
+	<div class="container">
+		<form action="#" th:action="@{/cifratura}" th:object="${cifrario}"
+			method="post">
+			<fieldset>
+				<legend>Cifrari disponibili</legend>
+			<input type="radio" name="cifrario" value="vigenere" id="cipher1"
+				th:field="*{cipher}" checked /> vigenere<br> <input type="radio"
+					name="cifrario" value="shift" id="cipher2" th:field="*{cipher}" /> shift
+			<p>
+				<input type="submit" value="Submit" /> <input type="reset"
+					value="Reset" />
+			</p>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>
