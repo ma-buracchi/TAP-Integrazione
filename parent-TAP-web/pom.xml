@@ -17,7 +17,7 @@
 	
 	<modules>
 		<module>../ciphers</module>
-		<module>../TAP-web-integration</module>
+		<module>../TAP-web-integration</module> 
 	</modules>
 
 	<properties>
