@@ -1,0 +1,12 @@
+it/buracchi/ciphers/VigenereTest.class
+it/buracchi/ciphers/BiMapperTest.class
+it/buracchi/ciphers/SubstitutionTest.class
+it/buracchi/ciphers/ShiftInputManagerIT.class
+it/buracchi/ciphers/AffineTest.class
+it/buracchi/ciphers/OneTimePadTest.class
+it/buracchi/ciphers/InputManagerTest.class
+it/buracchi/ciphers/VigenereInputManagerIT.class
+it/buracchi/ciphers/AffineInputManagerMapperIT.class
+it/buracchi/ciphers/ShiftTest.class
+it/buracchi/ciphers/SubInputManagerMapperIT.class
+it/buracchi/ciphers/OneTimePadInputManagerMapperIT.class

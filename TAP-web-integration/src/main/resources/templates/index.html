@@ -27,7 +27,6 @@
 		<div class="starter-template">
 			<h1>Benvenuti nell'applicazione di cifratura</h1>
 			<h2>Selezionare un cifrario tra quelli disponibili</h2>
-			<br>
 		</div>
 	</div>
 	<div class="container">
@@ -36,10 +35,10 @@
 			<fieldset>
 				<legend>Cifrari disponibili</legend>
 			<input type="radio" name="cifrario" value="vigenere" id="cipher1"
-				th:field="*{cipher}" checked /> vigenere<br> <input type="radio"
+				th:field="*{cipher}" checked="checked"/> vigenere <br></br> <input type="radio"
 					name="cifrario" value="shift" id="cipher2" th:field="*{cipher}" /> shift
 			<p>
-				<input type="submit" value="Submit" /> <input type="reset"
+				<input type="submit" id="submit" value="Submit" /> <input type="reset"
 					value="Reset" />
 			</p>
 			</fieldset>

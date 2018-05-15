@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>it.buracchi</groupId>
+	<artifactId>parent-TAP-web</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.9.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	
+	<modules>
+		<module>../ciphers</module>
+		<module>../TAP-web-integration</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<jacoco.data.file>${project.build.directory}/jacoco.exec</jacoco.data.file>
+		<jacoco.report.path>${project.reporting.outputDirectory}/jacoco.xml</jacoco.report.path>
+		<sonar.language>java</sonar.language>
+		<sonar.jacoco.reportPaths>${jacoco.data.file}</sonar.jacoco.reportPaths>
+		<sonar.coverage.exclusions></sonar.coverage.exclusions>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<classifier>exec</classifier>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>jacoco</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.eluder.coveralls</groupId>
+							<artifactId>coveralls-maven-plugin</artifactId>
+							<version>4.3.0</version>
+							<configuration>
+								<jacocoReports>
+									<jacocoReport>${jacoco.report.path}</jacocoReport>
+								</jacocoReports>
+							</configuration>
+						</plugin>
+
+						<plugin>
+							<groupId>org.sonarsource.scanner.maven</groupId>
+							<artifactId>sonar-maven-plugin</artifactId>
+							<version>3.4.0.905</version>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.7.9</version>
+						<configuration>
+							<!--  <excludes>
+								<exclude>**/ServerApplication.*</exclude>
+								<exclude>**/DatabaseGrid.*</exclude>
+								<exclude>**/WebSecurityConfig.*</exclude>
+								<exclude>**/App.*</exclude>
+								<exclude>**/MyRuntimeException.*</exclude>
+								<exclude>**/BrowserEnd2EndStepsDefinition.*</exclude>
+								<exclude>**/GridFromServer.*</exclude>
+							</excludes>-->
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<!-- binds by default to the phase "initialize" -->
+									<goal>prepare-agent</goal>
+									<!-- binds by default to the phase "verify" -->
+									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+
+		<profile>
+			<id>failsafe</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>it.buracchi</groupId>
+				<artifactId>ciphers</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>it.buracchi</groupId>
+				<artifactId>TAP-web-integration</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>it.buracchi</groupId>
+				<artifactId>endToEnd</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

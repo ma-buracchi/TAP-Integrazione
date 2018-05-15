@@ -29,14 +29,14 @@
 			<h2 th:text="'Hai scelto il cifrario: ' + ${cifrario.cipher}" />
 			<fieldset>
 				<p>
-				Inserisci il messaggio: <input type="text" th:field="*{plaintext}" />
+				Inserisci il messaggio: <input type="text" required="required" th:field="*{plaintext}" />
 				</p>
 				<p>
-				Inserisci di quante posizioni vuoi shiftare: <input type="number" required th:field="*{key}" />
+				Inserisci di quante posizioni vuoi shiftare: <input type="number" required="required" th:field="*{key}" />
 				</p>
 				<p>
-					<input type="radio" name="action" checked value="cifrare" th:field="*{action}" > cifrare
-					<input type="radio" name="action" value="decifrare" th:field="*{action}">
+					<input type="radio" name="action" checked="checked" value="cifrare" th:field="*{action}" /> cifrare
+					<input type="radio" name="action" value="decifrare" th:field="*{action}" />
 					decifrare
 				</p>
 				<p>

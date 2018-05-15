@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Affine.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ciphers</a> &gt; <a href="index.source.html" class="el_package">it.buracchi.ciphers</a> &gt; <span class="el_source">Affine.java</span></div><h1>Affine.java</h1><pre class="source lang-java linenums">package it.buracchi.ciphers;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import static it.buracchi.ciphers.Constants.*;
+
+public class Affine {
+
+	private Parser parser;
+	private Mapper&lt;Integer, Integer&gt; inverse;
+<span class="fc" id="L12">	private static final int[] RELATIVELY_PRIME_TO_26 = { 1, 3, 5, 7, 11, 17, 25 };</span>
+<span class="fc" id="L13">	private static final int[] INVERSE_MOD_26 = { 1, 9, 21, 15, 19, 23, 25 };</span>
+<span class="fc" id="L14">	private static final Logger LOGGER = LogManager.getLogger(Affine.class);</span>
+
+<span class="fc" id="L16">	public Affine(Parser p, Mapper&lt;Integer, Integer&gt; m) {</span>
+<span class="fc" id="L17">		parser = p;</span>
+<span class="fc" id="L18">		inverse = m;</span>
+<span class="fc" id="L19">		setInverse();</span>
+<span class="fc" id="L20">		BasicConfigurator.resetConfiguration();</span>
+<span class="fc" id="L21">		BasicConfigurator.configure();</span>
+<span class="fc" id="L22">	}</span>
+
+	private void setInverse() {
+<span class="fc bfc" id="L25" title="All 2 branches covered.">		for (int i = 0; i &lt; RELATIVELY_PRIME_TO_26.length; i++) {</span>
+<span class="fc" id="L26">			inverse.addEntry(RELATIVELY_PRIME_TO_26[i], INVERSE_MOD_26[i]);</span>
+		}
+<span class="fc" id="L28">	}</span>
+
+	public String coding(String msg, int a, int b) {
+<span class="fc" id="L31">		LOGGER.info(&quot;richiesta di cifratura della stringa '&quot; + msg + &quot;' con parametri a = &quot; + a + &quot; e b = &quot; + b);</span>
+<span class="fc" id="L32">		String message = parser.process(msg);</span>
+<span class="fc" id="L33">		StringBuilder res = new StringBuilder();</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">		if (inverse.containsKey(a)) {</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">			for (Character c : message.toCharArray()) {</span>
+<span class="fc" id="L36">				int letter = c - ASCII_OFFSET;</span>
+<span class="fc" id="L37">				res.append((char) (((a * letter + b) % ALPHABET_LENGTH) + ASCII_OFFSET));</span>
+			}
+<span class="fc" id="L39">			LOGGER.info(&quot;risultato della cifratura -----&gt; &quot; + res.toString());</span>
+<span class="fc" id="L40">			return res.toString();</span>
+		} else {
+<span class="fc" id="L42">			throw new IllegalArgumentException(&quot;Coefficient 'a' must be choosen between 1,3,5,7,11,17,25&quot;);</span>
+		}
+	}
+
+	public String decoding(String msg, int a, int b) {
+<span class="fc" id="L47">		LOGGER.info(&quot;richiesta di decifratura della stringa '&quot; + msg + &quot;' con parametri a = &quot; + a + &quot; e b = &quot; + b);</span>
+<span class="fc" id="L48">		String message = parser.process(msg);</span>
+<span class="fc" id="L49">		StringBuilder res = new StringBuilder();</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">		for (Character c : message.toCharArray()) {</span>
+<span class="fc" id="L51">			int letter = c - ASCII_OFFSET;</span>
+<span class="fc" id="L52">			res.append((char) (((inverse.getValueFromKey(a) * (letter - b + NEGATIVE_AVOIDING)) % ALPHABET_LENGTH)</span>
+					+ ASCII_OFFSET));
+		}
+<span class="fc" id="L55">		LOGGER.info(&quot;risultato della decifratura -----&gt; &quot; + res.toString());</span>
+<span class="fc" id="L56">		return res.toString();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

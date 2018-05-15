@@ -1,0 +1,11 @@
+it/buracchi/ciphers/Shift.class
+it/buracchi/ciphers/Constants.class
+it/buracchi/ciphers/Mapper.class
+it/buracchi/ciphers/Affine.class
+it/buracchi/ciphers/Substitution.class
+it/buracchi/ciphers/BiMapper.class
+it/buracchi/ciphers/Vigenere.class
+it/buracchi/ciphers/InputManager.class
+it/buracchi/ciphers/OneTimePad.class
+it/buracchi/ciphers/Parser.class
+it/buracchi/ciphers/Main.class

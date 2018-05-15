@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="it"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OneTimePad.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ciphers</a> &gt; <a href="index.source.html" class="el_package">it.buracchi.ciphers</a> &gt; <span class="el_source">OneTimePad.java</span></div><h1>OneTimePad.java</h1><pre class="source lang-java linenums">package it.buracchi.ciphers;
+
+import java.security.SecureRandom;
+
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import static it.buracchi.ciphers.Constants.*;
+
+public class OneTimePad {
+
+	private Parser parser;
+	private SecureRandom generator;
+	private Mapper&lt;Character, String&gt; convert;
+<span class="fc" id="L16">	private static final Logger LOGGER = LogManager.getLogger(OneTimePad.class);</span>
+<span class="fc" id="L17">	private static final char[] alphabet = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',</span>
+			'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+
+<span class="fc" id="L20">	public OneTimePad(Parser p, Mapper&lt;Character, String&gt; m, String[] conversion) {</span>
+<span class="fc" id="L21">		this.parser = p;</span>
+<span class="fc" id="L22">		this.convert = m;</span>
+<span class="fc" id="L23">		this.generator = new SecureRandom();</span>
+<span class="fc" id="L24">		initializeConvert(alphabet, conversion);</span>
+<span class="fc" id="L25">		BasicConfigurator.resetConfiguration();</span>
+<span class="fc" id="L26">		BasicConfigurator.configure();</span>
+<span class="fc" id="L27">	}</span>
+
+	public String createKey(String msg) {
+<span class="fc" id="L30">		LOGGER.info(&quot;Richiesta di creazione di una chiave per permettere la cifratura del messaggio &quot; + msg);</span>
+<span class="fc" id="L31">		StringBuilder key = new StringBuilder();</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">		while (key.length() &lt; msg.length()) {</span>
+<span class="fc" id="L33">			key.append(generator.nextInt(BIT_RANGE));</span>
+		}
+<span class="fc" id="L35">		LOGGER.info(&quot;La chiave richiesta è -----&gt; &quot; + key.toString());</span>
+<span class="fc" id="L36">		return key.toString();</span>
+	}
+
+	public String fromStringToBinary(String msg) {
+<span class="fc" id="L40">		LOGGER.info(&quot;Richiesta di conversione della stringa &quot; + msg + &quot; in una stringa binaria&quot;);</span>
+<span class="fc" id="L41">		String res = stringToBin(parser.process(msg));</span>
+<span class="fc" id="L42">		LOGGER.info(&quot;La stringa binaria risultante è -----&gt; &quot; + res);</span>
+<span class="fc" id="L43">		return res;</span>
+	}
+
+	public String fromBinaryToString(String message) {
+<span class="fc" id="L47">		LOGGER.info(&quot;Richiesta di conversione della stringa binaria &quot; + message + &quot; in una stringa alfabetica&quot;);</span>
+<span class="fc" id="L48">		String res = binToString(message);</span>
+<span class="fc" id="L49">		LOGGER.info(&quot;La stringa alfabetica risultante è -----&gt; &quot; + res);</span>
+<span class="fc" id="L50">		return res;</span>
+	}
+
+	public String coding(String message, String k) {
+<span class="fc" id="L54">		LOGGER.info(&quot;Richiesta di cifratura del messaggio &quot; + message + &quot; utilizzando la chiave &quot; + k);</span>
+<span class="fc" id="L55">		parser.checkKey(k, message.length());</span>
+<span class="fc" id="L56">		StringBuilder res = new StringBuilder();</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">		for (int i = 0; i &lt; message.length(); i++) {</span>
+<span class="fc" id="L58">			res.append(Character.getNumericValue(message.charAt(i)) ^ Character.getNumericValue(k.charAt(i)));</span>
+		}
+<span class="fc" id="L60">		LOGGER.info(&quot;Il risultato della cifratura è -----&gt; &quot; + res.toString());</span>
+<span class="fc" id="L61">		return res.toString();</span>
+	}
+
+	private String stringToBin(String msg) {
+<span class="fc" id="L65">		StringBuilder res = new StringBuilder();</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">		for (Character c : msg.toCharArray()) {</span>
+<span class="fc" id="L67">			res.append(convert.getValueFromKey(c));</span>
+		}
+<span class="fc" id="L69">		return res.toString();</span>
+	}
+
+	private String binToString(String msg) {
+<span class="fc" id="L73">		StringBuilder res = new StringBuilder();</span>
+<span class="fc" id="L74">		StringBuilder substring = new StringBuilder();</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">		for (char c : msg.toCharArray()) {</span>
+<span class="fc" id="L76">			substring.append(c);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">			if (convert.containsValue(substring.toString())) {</span>
+<span class="fc" id="L78">				res.append(convert.getKeyFromValue(substring.toString()));</span>
+<span class="fc" id="L79">				substring.setLength(0);</span>
+			}
+		}
+<span class="fc" id="L82">		return res.toString();</span>
+	}
+
+	private void initializeConvert(char[] alphabet, String[] conversion) {
+<span class="fc bfc" id="L86" title="All 2 branches covered.">		for (int i = 0; i &lt; ALPHABET_LENGTH; i++) {</span>
+<span class="fc" id="L87">			convert.addEntry(alphabet[i], conversion[i]);</span>
+		}
+<span class="fc" id="L89">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

@@ -29,14 +29,14 @@
 			<h2>Hai scelto il cifrario di Vigenere</h2>
 			<fieldset>
 				<p>
-					Inserisci il messaggio: <input type="text" th:field="*{plaintext}" />
+					Inserisci il messaggio: <input type="text" required="required" th:field="*{plaintext}" />
 				</p>
 				<p>
-					Inserisci la chiave: <input type="password" th:field="*{key}" />
+					Inserisci la chiave: <input type="password" required="required" th:field="*{key}" />
 				</p>
 				<p>
-					<input type="radio" name="action" value="cifrare" th:field="*{action}" checked> cifrare
-					<input type="radio" name="action" value="decifrare" th:field="*{action}">
+					<input type="radio" name="action" value="cifrare" th:field="*{action}" checked="checked" /> cifrare
+					<input type="radio" name="action" value="decifrare" th:field="*{action}"/>
 					decifrare
 				</p>
 				<p>
