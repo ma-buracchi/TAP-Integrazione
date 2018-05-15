@@ -14,7 +14,6 @@ addons:
 
 
 script:
-    - mvn -f parent-TAP-web/pom.xml clean verify -Pjacoco coveralls:report
     - mvn -f parent-TAP-web/pom.xml clean verify -Pjacoco sonar:sonar
     - mvn -f parent-TAP-web/pom.xml clean verify -Pfailsafe
 sudo: false
@@ -23,4 +22,6 @@ cache:
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.sonar/cache'
+
+
 
