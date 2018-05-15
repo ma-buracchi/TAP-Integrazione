@@ -1,0 +1,26 @@
+language: java
+
+jdk:
+    - oraclejdk8
+
+# skip installation step
+install: true
+
+addons:
+  sonarcloud:
+    organization: "ma-buracchi"
+    token:
+      secure: "f7709a1268bbb242cc245ae47b1ca1be2eb6be0c"
+
+
+script:
+    - mvn -f parent-TAP-web/pom.xml clean verify -Pjacoco coveralls:report
+    - mvn -f parent-TAP-web/pom.xml clean verify -Pjacoco sonar:sonar
+    - mvn -f parent-TAP-web/pom.xml clean verify -Pfailsafe
+sudo: false
+
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
+
