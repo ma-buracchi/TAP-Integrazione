@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.buracchi.ciphers.InputManager;
+import it.buracchi.ciphers.Shift;
+import it.buracchi.ciphers.Vigenere;
+
 @Controller
 public class CiphersWebController {
 
@@ -33,12 +37,12 @@ public class CiphersWebController {
 
 	@PostMapping("/resultVigenere")
 	public String vigenereComputation(@ModelAttribute Cifrario cifrario) {
-		return cipherService.vigenereComputing(cifrario);
+		return cipherService.vigenereComputing(cifrario, new Vigenere(new InputManager(),cifrario.getKey()));
 	}
 
 	@PostMapping("/resultShift")
 	public String shiftCompute(@ModelAttribute Cifrario cifrario) {
-		return cipherService.shiftComputing(cifrario);
+		return cipherService.shiftComputing(cifrario,new Shift(new InputManager()));
 	}
 
 }
