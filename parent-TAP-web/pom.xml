@@ -97,17 +97,6 @@
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
 						<version>0.7.9</version>
-						<configuration>
-							<!--  <excludes>
-								<exclude>**/ServerApplication.*</exclude>
-								<exclude>**/DatabaseGrid.*</exclude>
-								<exclude>**/WebSecurityConfig.*</exclude>
-								<exclude>**/App.*</exclude>
-								<exclude>**/MyRuntimeException.*</exclude>
-								<exclude>**/BrowserEnd2EndStepsDefinition.*</exclude>
-								<exclude>**/GridFromServer.*</exclude>
-							</excludes>-->
-						</configuration>
 						<executions>
 							<execution>
 								<goals>
@@ -159,11 +148,6 @@
 			<dependency>
 				<groupId>it.buracchi</groupId>
 				<artifactId>TAP-web-integration</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>it.buracchi</groupId>
-				<artifactId>endToEnd</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
 		</dependencies>

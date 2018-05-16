@@ -19,7 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<sonar.coverage.exclusions>**/CipherServiceConfig.*,**/TapWebIntegrationApplication.*,**/Constants.*,**/InputManager.*,**/Parser.*,**/Shift.*,**/Vigenere.*</sonar.coverage.exclusions>
+		<sonar.coverage.exclusions>**/CipherServiceConfig.*,**/TapWebIntegrationApplication.*</sonar.coverage.exclusions>
 	</properties>
 
 	<dependencies>
