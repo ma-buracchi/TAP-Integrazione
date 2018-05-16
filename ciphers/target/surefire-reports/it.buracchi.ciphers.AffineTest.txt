@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: it.buracchi.ciphers.AffineTest
--------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.951 sec - in it.buracchi.ciphers.AffineTest

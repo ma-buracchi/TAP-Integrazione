@@ -1,8 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-ciphers,it.buracchi.ciphers,Substitution,0,146,0,4,0,27,0,8,0,6
-ciphers,it.buracchi.ciphers,Shift,0,152,0,4,0,21,0,6,0,4
-ciphers,it.buracchi.ciphers,InputManager,0,90,0,12,0,14,0,10,0,4
-ciphers,it.buracchi.ciphers,OneTimePad,0,390,0,12,0,46,0,15,0,9
-ciphers,it.buracchi.ciphers,Vigenere,0,230,0,12,0,38,0,12,0,6
-ciphers,it.buracchi.ciphers,BiMapper,0,38,0,0,0,10,0,7,0,7
-ciphers,it.buracchi.ciphers,Affine,0,272,0,8,0,31,0,9,0,5
