@@ -6,17 +6,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import it.buracchi.ciphers.Shift;
 import it.buracchi.ciphers.Vigenere;
 import it.buracchi.ciphers.web.Cifrario;
 import it.buracchi.ciphers.web.CipherService;
-import it.buracchi.ciphers.web.CipherServiceConfig;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes=CipherServiceConfig.class)
 public class CipherServiceWithMockBeanSpringBootTest {
 	
 	@InjectMocks
