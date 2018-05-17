@@ -24,11 +24,15 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<jacoco.data.file>${project.build.directory}/jacoco.exec</jacoco.data.file>
-		<jacoco.report.path>${project.reporting.outputDirectory}/jacoco.xml</jacoco.report.path>
+		<!-- For Unit tests -->
+		<jacoco.data.file>${project.build.directory}/coverage-reports/jacoco.exec</jacoco.data.file>
+		<jacoco.report.path>${project.reporting.outputDirectory}/jacoco-ut</jacoco.report.path>
+		<!-- For Integration tests -->
+		<jacoco.data.it.file>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.data.it.file>
+		<jacoco.report.it.path>${project.reporting.outputDirectory}/jacoco-it</jacoco.report.it.path>
 		<sonar.language>java</sonar.language>
-		<sonar.jacoco.reportPaths>${jacoco.data.file}</sonar.jacoco.reportPaths>
-		<sonar.coverage.exclusions></sonar.coverage.exclusions>
+		<sonar.jacoco.reportPath>${jacoco.data.file}</sonar.jacoco.reportPath>
+		<sonar.jacoco.itReportPath>${jacoco.data.it.file}</sonar.jacoco.itReportPath>
 	</properties>
 
 	<dependencies>
@@ -79,7 +83,7 @@
 							<version>4.3.0</version>
 							<configuration>
 								<jacocoReports>
-									<jacocoReport>${jacoco.report.path}</jacocoReport>
+									<jacocoReport>${jacoco.report.path}/jacoco.xml</jacocoReport>
 								</jacocoReports>
 							</configuration>
 						</plugin>

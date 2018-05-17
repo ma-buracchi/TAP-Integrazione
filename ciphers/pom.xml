@@ -15,34 +15,10 @@
 	</parent>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- For Unit tests -->
-		<jacoco.data.file>${project.build.directory}/coverage-reports/jacoco.exec</jacoco.data.file>
-		<jacoco.report.path>${project.reporting.outputDirectory}/jacoco-ut</jacoco.report.path>
-		<!-- For Integration tests -->
-		<jacoco.data.it.file>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.data.it.file>
-		<jacoco.report.it.path>${project.reporting.outputDirectory}/jacoco-it</jacoco.report.it.path>
-		<sonar.language>java</sonar.language>
-		<sonar.jacoco.reportPath>${jacoco.data.file}</sonar.jacoco.reportPath>
-		<sonar.jacoco.itReportPath>${jacoco.data.it.file}</sonar.jacoco.itReportPath>
 		<sonar.coverage.exclusions>**/Main.*,**/Constants.*</sonar.coverage.exclusions>
 	</properties>
 
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eluder.coveralls</groupId>
-					<artifactId>coveralls-maven-plugin</artifactId>
-					<version>4.3.0</version>
-					<configuration>
-						<jacocoReports>
-							<jacocoReport>${jacoco.report.path}/jacoco.xml</jacocoReport>
-						</jacocoReports>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -76,7 +52,6 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.7.201606060606</version>
 				<configuration>
 					<excludes>
 						<exclude>**/Main.*</exclude>
@@ -156,12 +131,6 @@
 	</build>
 
 	<dependencies>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
