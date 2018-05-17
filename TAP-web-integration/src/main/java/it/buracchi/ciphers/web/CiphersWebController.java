@@ -1,5 +1,6 @@
 package it.buracchi.ciphers.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,16 @@ import it.buracchi.ciphers.Vigenere;
 @Controller
 public class CiphersWebController {
 
-	private CipherService cipherService = new CipherService();
-	
+	@Autowired
+	private CipherService cipherService;
+
+	@Autowired
+	private Cifrario cifrario;
+
 	@GetMapping("/")
-	public String choosingCipher(Model model) {		
-		return cipherService.chooseCipher(model);
+	public String choosingCipher(Model model) {
+		model.addAttribute("cifrario", cifrario);
+		return "index";
 	}
 
 	@GetMapping("/about")
@@ -32,17 +38,21 @@ public class CiphersWebController {
 
 	@PostMapping("/cifratura")
 	public String cipherSubmission(@ModelAttribute Cifrario cifrario) {
-		return cipherService.cipherSubmit(cifrario);
+		return cifrario.getCipher();
 	}
 
 	@PostMapping("/resultVigenere")
 	public String vigenereComputation(@ModelAttribute Cifrario cifrario) {
-		return cipherService.vigenereComputing(cifrario, new Vigenere(new InputManager(),cifrario.getKey()));
+		cifrario.setCiphertext(cipherService.vigenereComputing(cifrario, cifrario.getAction(), cifrario.getPlaintext(),
+				new Vigenere(new InputManager(), cifrario.getKey())));
+		return "result";
 	}
 
 	@PostMapping("/resultShift")
 	public String shiftCompute(@ModelAttribute Cifrario cifrario) {
-		return cipherService.shiftComputing(cifrario,new Shift(new InputManager()));
+		cifrario.setCiphertext(cipherService.shiftComputing(cifrario, cifrario.getAction(), cifrario.getPlaintext(),
+				new Shift(new InputManager())));
+		return "result";
 	}
 
 }

@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -19,7 +19,7 @@ import it.buracchi.ciphers.web.CipherServiceConfig;
 @ContextConfiguration(classes=CipherServiceConfig.class)
 public class CipherServiceWithMockBeanSpringBootTest {
 	
-	@Autowired
+	@InjectMocks
 	private CipherService cipherService;
 	
 	@MockBean
@@ -32,24 +32,12 @@ public class CipherServiceWithMockBeanSpringBootTest {
 	private Shift shift;
 	
 	@Test
-	public void choosenVigenereCipher() throws Exception {
-		when(cifrario.getCipher()).thenReturn("vigenere");
-		assertThat(cipherService.cipherSubmit(cifrario)).isEqualTo("vigenere");
-	}
-	
-	@Test
-	public void choosenShiftCipher() throws Exception {
-		when(cifrario.getCipher()).thenReturn("shift");
-		assertThat(cipherService.cipherSubmit(cifrario)).isEqualTo("shift");
-	}
-	
-	@Test
 	public void vigenereOperationCifrareWithAllParameters() throws Exception {
 		when(cifrario.getAction()).thenReturn("cifrare");
 		when(cifrario.getKey()).thenReturn("b");
 		when(cifrario.getPlaintext()).thenReturn("ciao");
 		when(vig.coding("ciao")).thenReturn("djbp");
-		assertThat(cipherService.vigenereComputing(cifrario,vig)).isEqualTo("result");
+		assertThat(cipherService.vigenereComputing(cifrario,"cifrare", "ciao", vig)).isEqualTo("djbp");
 	}
 	
 	@Test
@@ -57,8 +45,8 @@ public class CipherServiceWithMockBeanSpringBootTest {
 		when(cifrario.getAction()).thenReturn("decifrare");
 		when(cifrario.getKey()).thenReturn("b");
 		when(cifrario.getPlaintext()).thenReturn("djbp");
-		when(vig.coding("djbp")).thenReturn("ciao");
-		assertThat(cipherService.vigenereComputing(cifrario,vig)).isEqualTo("result");
+		when(vig.decoding("djbp")).thenReturn("ciao");
+		assertThat(cipherService.vigenereComputing(cifrario,"decifrare", "djbp", vig)).isEqualTo("ciao");
 	}
 	
 	@Test
@@ -67,7 +55,7 @@ public class CipherServiceWithMockBeanSpringBootTest {
 		when(cifrario.getKey()).thenReturn("1");
 		when(cifrario.getPlaintext()).thenReturn("ciao");
 		when(shift.coding("ciao",1)).thenReturn("djbp");
-		assertThat(cipherService.shiftComputing(cifrario,shift)).isEqualTo("result");
+		assertThat(cipherService.shiftComputing(cifrario,"cifrare", "ciao", shift)).isEqualTo("djbp");
 	}
 
 	@Test
@@ -76,7 +64,7 @@ public class CipherServiceWithMockBeanSpringBootTest {
 		when(cifrario.getKey()).thenReturn("1");
 		when(cifrario.getPlaintext()).thenReturn("djbp");
 		when(shift.decoding("djbp",1)).thenReturn("ciao");
-		assertThat(cipherService.shiftComputing(cifrario,shift)).isEqualTo("result");
+		assertThat(cipherService.shiftComputing(cifrario,"decifrare", "djbp", shift)).isEqualTo("ciao");
 	}
 
 }

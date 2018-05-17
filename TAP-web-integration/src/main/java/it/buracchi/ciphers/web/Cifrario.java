@@ -1,5 +1,6 @@
 package it.buracchi.ciphers.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -9,6 +10,11 @@ public class Cifrario {
 	private String key;
 	private String ciphertext;
 	private String action = "cifrare";
+	
+	@Autowired
+	public Cifrario() {
+		
+	}
 	
 	public String getPlaintext() {
 		return plaintext;
