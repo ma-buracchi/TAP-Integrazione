@@ -1,6 +1,7 @@
 package it.buracchi.ciphers.web.test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.Test;
@@ -8,7 +9,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.ModelAndViewAssert;
 import org.springframework.test.web.servlet.MockMvc;
 
 import it.buracchi.ciphers.web.Cifrario;
@@ -33,7 +36,7 @@ public class CiphersWebControllerTest {
 		mvc.perform(get("/")).andExpect(status().is2xxSuccessful());
 	}
 
-	/*@Test
+	@Test
 	public void testReturnHomeView() throws Exception {
 		ModelAndViewAssert.assertViewName(mvc.perform(get("/")).andReturn().getModelAndView(), "index");
 	}
@@ -97,6 +100,6 @@ public class CiphersWebControllerTest {
 				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 
 		).andExpect(view().name("result"));
-	}*/
+	}
 
 }
