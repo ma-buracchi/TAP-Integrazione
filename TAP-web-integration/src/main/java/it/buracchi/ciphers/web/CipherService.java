@@ -2,8 +2,6 @@ package it.buracchi.ciphers.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 import it.buracchi.ciphers.Shift;
 import it.buracchi.ciphers.Vigenere;
 
@@ -14,7 +12,7 @@ public class CipherService {
 	public CipherService() {
 	}
 
-	public String vigenereComputing(@ModelAttribute Cifrario cifrario, String action, String plaintext, Vigenere vig) {
+	public String vigenereComputing(String action, String plaintext, Vigenere vig) {
 		if (action.equals("cifrare")) {
 			return vig.coding(plaintext);
 		} else {
@@ -22,11 +20,11 @@ public class CipherService {
 		}
 	}
 
-	public String shiftComputing(@ModelAttribute Cifrario cifrario, String action, String plaintext, Shift shift) {
+	public String shiftComputing(String action, String plaintext, String key, Shift shift) {
 		if (action.equals("cifrare")) {
-			return shift.coding(cifrario.getPlaintext(), Integer.parseInt(cifrario.getKey()));
+			return shift.coding(plaintext, Integer.parseInt(key));
 		} else {
-			return shift.decoding(cifrario.getPlaintext(), Integer.parseInt(cifrario.getKey()));
+			return shift.decoding(plaintext, Integer.parseInt(key));
 		}
 	}
 

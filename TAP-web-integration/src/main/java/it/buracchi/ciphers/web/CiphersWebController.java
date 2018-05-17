@@ -43,14 +43,14 @@ public class CiphersWebController {
 
 	@PostMapping("/resultVigenere")
 	public String vigenereComputation(@ModelAttribute Cifrario cifrario) {
-		cifrario.setCiphertext(cipherService.vigenereComputing(cifrario, cifrario.getAction(), cifrario.getPlaintext(),
+		cifrario.setCiphertext(cipherService.vigenereComputing(cifrario.getAction(), cifrario.getPlaintext(),
 				new Vigenere(new InputManager(), cifrario.getKey())));
 		return "result";
 	}
 
 	@PostMapping("/resultShift")
 	public String shiftCompute(@ModelAttribute Cifrario cifrario) {
-		cifrario.setCiphertext(cipherService.shiftComputing(cifrario, cifrario.getAction(), cifrario.getPlaintext(),
+		cifrario.setCiphertext(cipherService.shiftComputing(cifrario.getAction(), cifrario.getPlaintext(), cifrario.getKey(),
 				new Shift(new InputManager())));
 		return "result";
 	}

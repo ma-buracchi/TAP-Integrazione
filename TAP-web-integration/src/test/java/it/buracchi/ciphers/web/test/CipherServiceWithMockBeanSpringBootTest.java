@@ -37,7 +37,7 @@ public class CipherServiceWithMockBeanSpringBootTest {
 		when(cifrario.getKey()).thenReturn("b");
 		when(cifrario.getPlaintext()).thenReturn("ciao");
 		when(vig.coding("ciao")).thenReturn("djbp");
-		assertThat(cipherService.vigenereComputing(cifrario,"cifrare", "ciao", vig)).isEqualTo("djbp");
+		assertThat(cipherService.vigenereComputing("cifrare", "ciao", vig)).isEqualTo("djbp");
 	}
 	
 	@Test
@@ -46,7 +46,7 @@ public class CipherServiceWithMockBeanSpringBootTest {
 		when(cifrario.getKey()).thenReturn("b");
 		when(cifrario.getPlaintext()).thenReturn("djbp");
 		when(vig.decoding("djbp")).thenReturn("ciao");
-		assertThat(cipherService.vigenereComputing(cifrario,"decifrare", "djbp", vig)).isEqualTo("ciao");
+		assertThat(cipherService.vigenereComputing("decifrare", "djbp", vig)).isEqualTo("ciao");
 	}
 	
 	@Test
@@ -55,7 +55,7 @@ public class CipherServiceWithMockBeanSpringBootTest {
 		when(cifrario.getKey()).thenReturn("1");
 		when(cifrario.getPlaintext()).thenReturn("ciao");
 		when(shift.coding("ciao",1)).thenReturn("djbp");
-		assertThat(cipherService.shiftComputing(cifrario,"cifrare", "ciao", shift)).isEqualTo("djbp");
+		assertThat(cipherService.shiftComputing("cifrare", "ciao", "1", shift)).isEqualTo("djbp");
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class CipherServiceWithMockBeanSpringBootTest {
 		when(cifrario.getKey()).thenReturn("1");
 		when(cifrario.getPlaintext()).thenReturn("djbp");
 		when(shift.decoding("djbp",1)).thenReturn("ciao");
-		assertThat(cipherService.shiftComputing(cifrario,"decifrare", "djbp", shift)).isEqualTo("ciao");
+		assertThat(cipherService.shiftComputing("decifrare", "djbp", "1", shift)).isEqualTo("ciao");
 	}
 
 }
