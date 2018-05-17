@@ -1,16 +1,11 @@
 package it.buracchi.ciphers.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import it.buracchi.ciphers.Shift;
 import it.buracchi.ciphers.Vigenere;
 
 @Service
 public class CipherService {
-
-	@Autowired
-	public CipherService() {
-	}
 
 	public String vigenereComputing(String action, String plaintext, Vigenere vig) {
 		if (action.equals("cifrare")) {
