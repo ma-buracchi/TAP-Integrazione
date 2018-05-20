@@ -27,7 +27,7 @@
 		<form action="#" th:action="@{/vigenereRes}" th:object="${cifrario}"
 			method="post">
 			<h1>Il risultato della cifratura è: </h1>
-			<h2 th:text="${cifrario.plaintext}+' ----> '+${cifrario.ciphertext}" />
+			<h2 th:text="${cifrario.plaintext}+' ----> '+${cifrario.ciphertext}" ></h2>
 		</form>
 	</div>
 </body>
