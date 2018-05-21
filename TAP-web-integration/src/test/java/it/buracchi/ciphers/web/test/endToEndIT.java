@@ -3,7 +3,12 @@ package it.buracchi.ciphers.web.test;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -16,11 +21,22 @@ import com.gargoylesoftware.htmlunit.html.HtmlResetInput;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 
+import it.buracchi.ciphers.web.TapWebIntegrationApplication;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class endToEndIT {
 
 	private WebClient webClient;
 	private static final String HOMEPAGE = "http://localhost:8080";
 	private static final String ABOUT = HOMEPAGE + "/about";
+
+	@BeforeClass
+	public static void setupClass() {
+		SpringApplicationBuilder builder = new SpringApplicationBuilder(TapWebIntegrationApplication.class);
+		builder.headless(false);
+		builder.run(new String[] { "--server.port=8080" });
+	}
 
 	@Before
 	public void setup() {
@@ -100,7 +116,7 @@ public class endToEndIT {
 		Assert.assertTrue(result.getBody().getTextContent().contains("ciao"));
 		Assert.assertTrue(result.getBody().getTextContent().contains("djbp"));
 	}
-	
+
 	@Test
 	public void testingShiftCipher() throws Exception {
 		HtmlPage homepage = webClient.getPage(HOMEPAGE);
