@@ -24,15 +24,15 @@
 		</div>
 	</nav>
 	<div class="container">
-		<form action="#" th:action="@{/resultShift}" th:object="${cifrario}"
+		<form name = "shift" action="#" th:action="@{/resultShift}" th:object="${cifrario}"
 			method="post">
 			<h2 th:text="'Hai scelto il cifrario: ' + ${cifrario.cipher}"></h2>
 			<fieldset>
 				<p>
-				Inserisci il messaggio: <input type="text" required="required" th:field="*{plaintext}" />
+				Inserisci il messaggio: <input name = "plaintext" type="text" required="required" th:field="*{plaintext}" />
 				</p>
 				<p>
-				Inserisci di quante posizioni vuoi shiftare: <input type="number" required="required" th:field="*{key}" />
+				Inserisci di quante posizioni vuoi shiftare: <input name = "key" type="number" required="required" th:field="*{key}" />
 				</p>
 				<p>
 					<input type="radio" name="action" checked="checked" value="cifrare" th:field="*{action}" /> cifrare

@@ -24,15 +24,15 @@
 		</div>
 	</nav>
 	<div class="container">
-		<form action="#" th:action="@{/resultVigenere}" autocomplete="off"
+		<form name = "vigenere" action="#" th:action="@{/resultVigenere}" autocomplete="off"
 			th:object="${cifrario}" method="post">
 			<h2>Hai scelto il cifrario di Vigenere</h2>
 			<fieldset>
 				<p>
-					Inserisci il messaggio: <input type="text" required="required" th:field="*{plaintext}" />
+					Inserisci il messaggio: <input name = "plaintext" type="text" required="required" th:field="*{plaintext}" />
 				</p>
 				<p>
-					Inserisci la chiave: <input type="password" required="required" th:field="*{key}" />
+					Inserisci la chiave: <input name = "key" type="password" required="required" th:field="*{key}" />
 				</p>
 				<p>
 					<input type="radio" name="action" value="cifrare" th:field="*{action}" checked="checked" /> cifrare
