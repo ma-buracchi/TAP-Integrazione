@@ -120,21 +120,19 @@
 \end{titlepage}
 
 %----------------------------------------------------------------------------------------
-%	TABLE OF CONTENTS
-%----------------------------------------------------------------------------------------
-\tableofcontents
-\newpage
-%----------------------------------------------------------------------------------------
 %	TESTO
 %----------------------------------------------------------------------------------------
 
 \section{Cenni preliminari}
 
 	In questo progetto è stata creata una applicazione web utilizzando il framework \emph{Spring}. Questa applicazione permette di cifrare e decifrare stringhe di testo utilizzando due cifrari:
+	
 	\begin{itemize}
 		\item Shift cipher
 		\item Vigenere cipher
 	\end{itemize}
+	
+	Per utilizzare questi due cifrari che fanno parte del progetto precedentemente sviluppato si è ricorso all'utilizzo dei moduli di \emph{MAVEN}. \'{E} stato infatti creato un parent POM che gestisse le dipendenze necessarie all'interazione tra i due moduli interessati.
 	
 	\subsection{Struttura progetto}
 		Le quattro classi principali che implementano l'applicazione sono \emph{Cifrario, CipherService, CiphersWebController} e \emph{TapWebIntegrationApplication}.
@@ -166,7 +164,19 @@
 		Il progetto è raggiungibile al seguente link: \url{https://travis-ci.org/ma-buracchi/TAP-Integrazione}.
 		
 		\item[Spring Framework:] Il framework Spring è stato utilizzato per la creazione e il testing dell'app. Essa è infatti una SpringBoot Application che viene lanciata in locale su \url{http://localhost:8080} direttamente da Eclipse tramite la SpringTool Suite. Lo stesso framework viene utilizzato anche per il testing.
+		
+		\item[HTMLUnit:] Questo framework è stato utilizzato in questo progetto per effettuare degli end to end testing.
 	\end{description}
 	
+\section{Testing}
+	Come detto, la classe \emph{Cifrario} non è stata testata in quanto contiene solamente metodi getters e setters.
+	
+	La classe \emph{CipherService} è stata testata verificando il comportamento dei due cifrari utilizzabili. Utilizzando i Mock di \emph{Cifrario}, \emph{Vigenere} e \emph{Shift} è stato possibile testare la classe in isolamento. I comportamenti testati sono la cifratura/decifratura con entrambi i cifrari. Non è stato ritenuto necessario testare il comportamento della classe con dati mancanti in quanto devono essere forniti obbligatoriamente dall'utente.
+	
+	Per quanto riguarda il \emph{CiphersWebController} sono stati testati i pulsanti della barra di navigazione (Home e About), lo status 200 della homepage, la selezione dei due cifrari e la corretta visualizzazione dei loro risultati.
+	
+	Sono poi stati effettuati degli Integration Testing per verificare la corretta interazione tra il Service e un istanza di Vigenere, tra il Service e un'istanza di Shift e tra il Controller, il Service e il Cifrario.
+	
+	Per ultimo è stato effettuato un test \emph{end to end} utilizzando HTMLUnit.
 
 \end{document}
