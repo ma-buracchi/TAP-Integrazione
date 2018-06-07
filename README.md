@@ -7,7 +7,7 @@
 Il report di SonarCloud di questo progetto si trova al link:
 https://sonarcloud.io/organizations/ma-buracchi/projects
 
-![]()
+![Coverage Status](https://coveralls.io/repos/github/ma-buracchi/TAP-Integrazione/badge.svg?branch=master)](https://coveralls.io/github/ma-buracchi/TAP-Integrazione?branch=master)
 ![]()
 ![]()
 ![]()
