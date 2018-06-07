@@ -34,7 +34,6 @@
 		<sonar.language>java</sonar.language>
 		<sonar.jacoco.reportPath>${jacoco.data.file}</sonar.jacoco.reportPath>
 		<sonar.jacoco.itReportPath>${jacoco.data.it.file}</sonar.jacoco.itReportPath>
-		<sonar.coverage.exclusions>**/TapWebIntegrationApplication.*</sonar.coverage.exclusions>
 	</properties>
 
 	<build>
