@@ -8,9 +8,9 @@ addons:
     token:
       secure: Vb7dWvoempmNAzRDw4RdN6qLmF4Ja4TI8RQpZA4H59QyV5RO7HxeiIJXz9QckC7aHUSug95LSqQNmvps4GdOBQpHkjiyN1QuELj4mViQYTr4zKPV5CYdXz2UCVBY/BvKB/3CbzWXzqz4e+IEKywLfsJR3cZim1JTotP2QlSMSnMqtETSvnmmQ700DghFYqmqhMMvcl+ZvrrYHdbDt4vVGEf2+/AhIiAB8haWOIMGlbvfQON5zbYVz5RU9hfpnv9cdbHd3er7YYUTwuOJpvbq+/BDPs2QVNIKSUOqgvNLVyhuLZCgxXKGMCpsbYBKShXayTprLhIMex1JVbNbHfTrGxsrVzsjIti1f2sJ34eQf9rHGm5bbr/bqAqNpUMB40D5NKclsT9s8No8anMzy5SkwGTtmTCEeepRdv5hiDJQP5fkTckO39jb4tzH5a0nMqRgFUFXrf0l0SgykhgeWCVhP3GE6EpMZr/zuHlRioCetQMSWnFhCqNdif9Q/AnLJDp5vBMSpD53ZeX/J83VfxaKJaqzwAAzYrjTb3iSQZG6G7P2oOPAPCbiKN6klwEFXuNHGsNcwkEcEfDK+zg7plZOIctiZedpEjb3KzhBia2x3JrnfZfIRCCH7dpfZUB7PNBQaTa0HmtvKD/H6LFpTtD/hGQ/DfVah5HIALvRA2uzWAg=
 script:
+- mvn -f parent-TAP-web/pom.xml clean verify -Pfailsafe
 - mvn -f parent-TAP-web/pom.xml clean verify -Pjacoco coveralls:report
 - mvn -f parent-TAP-web/pom.xml clean verify -Pjacoco sonar:sonar
-- mvn -f parent-TAP-web/pom.xml clean verify -Pfailsafe
 sudo: true
 cache:
   directories:
