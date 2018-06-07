@@ -34,6 +34,7 @@
 		<sonar.language>java</sonar.language>
 		<sonar.jacoco.reportPath>${jacoco.data.file}</sonar.jacoco.reportPath>
 		<sonar.jacoco.itReportPath>${jacoco.data.it.file}</sonar.jacoco.itReportPath>
+		<sonar.coverage.exclusions>**/TapWebIntegrationApplication.*</sonar.coverage.exclusions>
 	</properties>
 
 	<build>
@@ -89,6 +90,11 @@
 						<groupId>org.jacoco</groupId>
 						<artifactId>jacoco-maven-plugin</artifactId>
 						<version>0.7.9</version>
+						<configuration>
+							<excludes>
+								<exclude>**/TapWebIntegrationApplication.*</exclude>
+							</excludes>
+</configuration>
 						<executions>
 							<!-- For Unit tests -->
 							<execution>
