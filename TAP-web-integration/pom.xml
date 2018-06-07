@@ -17,7 +17,7 @@
 
 	<properties>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<sonar.coverage.exclusions>**/Cifrario.*,**/CipherServiceConfig.*,**/TapWebIntegrationApplication.*</sonar.coverage.exclusions>
+		<sonar.coverage.exclusions>**/Cifrario.*,**/CipherServiceConfig.*</sonar.coverage.exclusions>
 	</properties>
 
 	<dependencies>
